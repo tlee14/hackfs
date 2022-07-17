@@ -74,6 +74,7 @@ function App() {
   }
 
   const write = async (a) => {
+    var message_to_write = document.getElementById("myMessage").value
     try {
       const { ethereum } = window;
 
@@ -85,7 +86,7 @@ function App() {
         let count = await writePortalContract.getTotalWrites();
         console.log("Retrieved total write count...", count.toNumber());
 
-        const writeTxn = await writePortalContract.write("placeholder", { gasLimit: 1000000 });
+        const writeTxn = await writePortalContract.write(message_to_write, { gasLimit: 1000000 });
         console.log("Mining...", writeTxn.hash);
 
         await writeTxn.wait();
@@ -187,9 +188,11 @@ function App() {
           "Your IPFS file is available at: " + fileUrl
         }
       <p>
+      <input type="text" id="myMessage" placeholder="File Description" />
         <button className="writeButton" onClick={write}>
           Write
         </button>
+
       </p>
       <p>
         <button className="countButton" onClick={displayCount}>
