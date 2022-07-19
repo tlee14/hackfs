@@ -14,10 +14,6 @@ Once Truffle is installed and Ganache is running, run the unit tests with
 truffle test
 ```
 
-```bash
-npm install --location=global ipfs-http-client
-```
-
 ### Node
 
 Install all your node packages with
@@ -29,6 +25,8 @@ Run the app locally with
 ```bash
 npm start
 ```
+
+The app should be running on `http://localhost:3000`.
 
 ## Versions
 ```bash

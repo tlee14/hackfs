@@ -6,7 +6,10 @@ import {ethers} from "ethers";
 import abi from "./utils/WritePortal.json"
 
 
-const client = create('https://ipfs.infura.io:5001/api/v0')
+const baseurl = "http://10.130.3.153:5001"
+//const baseurl = "https://ipfs.infura.io:5001"
+const client = create(`${baseurl}/api/v0`)
+console.log(client)
 
 
 function App() {
@@ -134,8 +137,11 @@ function App() {
   async function onChange(e) {
     const file = e.target.files[0]
     try {
+      console.log("in ipfs add")
       const added = await client.add(file)
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`
+      console.log("added file")
+      const url = `${baseurl}/ipfs/${added.path}`
+      console.log(`url: ${url}`)
       updateFileUrl(url)
     } catch (error) {
       console.log('Error uploading file: ', error)
